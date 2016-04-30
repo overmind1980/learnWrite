@@ -1,8 +1,9 @@
-
 var canvasWidth = Math.min(600 ,$(window).width()-20);
 var canvasHeight = canvasWidth;
+console.log("canvasWidth==="+canvasWidth);
+console.log("canvasHeight==="+canvasHeight);
 
-
+var row=0,column= 0,current;
 
 var strokeColor = "black";
 
@@ -17,6 +18,39 @@ var context = canvas.getContext("2d");
 canvas.width = canvasWidth;
 canvas.height = canvasHeight;
 
+var sample = document.getElementById('sample');
+sample.style.fontSize = canvasWidth*0.9+"px";
+sample.style.left = canvasWidth*0.1+"px";
+
+var _isAudioInit = false;
+
+var playAudio = function(src) {
+	if (typeof device != "undefined") {
+		alert(3);
+		// Android
+		if (device.platform == 'Android') {
+			console.log(src);
+		}
+		var mediaRes = new Media(src, function onSuccess() {
+			mediaRes.release();
+		}, function onError(e) {
+			alert("error playing sound: " + JSON.stringify(e));
+		});
+		mediaRes.play();
+	}else if (typeof Audio != "undefined") {
+		if (!_isAudioInit) {
+			_audio = new Audio(src);
+			_audio.play();
+			_isAudioInit = true;
+		} else {
+			_audio.src = src;
+			_audio.play();
+		}
+	} else {
+		alert("no sound API to play: " + src);
+	}
+}
+
 
 $("#controller").css("width",canvasWidth+"px");
 drawGrid();
@@ -26,6 +60,25 @@ $("#clear_btn").click(
 		drawGrid();
 	}
 )
+$("#next_btn").click(
+	function(e){
+		//alert("row====="+row+"column===="+column);
+		sample.innerHTML=_word[row][column];
+
+		playAudio("./audio/" + _word[row][2] + ".wav");
+		if(column==1){
+			column=0;
+			row++;
+		}
+		else{
+			column++;
+		}
+
+		context.clearRect(0,0,canvasWidth,canvasHeight);
+		drawGrid();
+	}
+)
+
 $(".color_btn").click(
 	function(e){
 		$(".color_btn").removeClass("color_btn_selected");
