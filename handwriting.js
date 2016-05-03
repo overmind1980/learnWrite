@@ -3,7 +3,7 @@ var canvasHeight = canvasWidth;
 console.log("canvasWidth==="+canvasWidth);
 console.log("canvasHeight==="+canvasHeight);
 
-var row=0,column= 0,current;
+var row=0,column= -1,current;
 
 var strokeColor = "black";
 
@@ -63,9 +63,6 @@ $("#clear_btn").click(
 $("#next_btn").click(
 	function(e){
 		//alert("row====="+row+"column===="+column);
-		sample.innerHTML=_word[row][column];
-
-		playAudio("./audio/" + _word[row][2] + ".wav");
 		if(column==1){
 			column=0;
 			row++;
@@ -74,19 +71,106 @@ $("#next_btn").click(
 			column++;
 		}
 
+		sample.innerHTML=_word[row][column];
+		playAudio("./audio/" + _word[row][2] + ".wav");
+
 		context.clearRect(0,0,canvasWidth,canvasHeight);
 		drawGrid();
 	}
 )
 
-$(".color_btn").click(
+$("#a_btn").click(
 	function(e){
-		$(".color_btn").removeClass("color_btn_selected");
-		$(this).addClass("color_btn_selected");
-		strokeColor = $(this).css("background-color");
+		column=0;
+		row=0;
+		sample.innerHTML=_word[row][column];
+		playAudio("./audio/" + _word[row][2] + ".wav");
+
+		context.clearRect(0,0,canvasWidth,canvasHeight);
+		drawGrid();
 	}
+)
 
 
+$("#sa_btn").click(
+	function(e){
+		column=0;
+		row=10;
+		sample.innerHTML=_word[row][column];
+		playAudio("./audio/" + _word[row][2] + ".wav");
+
+		context.clearRect(0,0,canvasWidth,canvasHeight);
+		drawGrid();
+	}
+)
+
+$("#na_btn").click(
+	function(e){
+		column=0;
+		row=20;
+		sample.innerHTML=_word[row][column];
+		playAudio("./audio/" + _word[row][2] + ".wav");
+
+		context.clearRect(0,0,canvasWidth,canvasHeight);
+		drawGrid();
+	}
+)
+
+$("#ma_btn").click(
+	function(e){
+		column=0;
+		row=30;
+		sample.innerHTML=_word[row][column];
+		playAudio("./audio/" + _word[row][2] + ".wav");
+
+		context.clearRect(0,0,canvasWidth,canvasHeight);
+		drawGrid();
+	}
+)
+
+$("#ra_btn").click(
+	function(e){
+		column=0;
+		row=40;
+		sample.innerHTML=_word[row][column];
+		playAudio("./audio/" + _word[row][2] + ".wav");
+
+		context.clearRect(0,0,canvasWidth,canvasHeight);
+		drawGrid();
+	}
+)
+
+
+
+$("#prev_btn").click(
+	function(e){
+		alert("row====="+row+"column===="+column);
+
+		if(column==0){
+			column=1;
+			row--;
+		}
+		else{
+			column--;
+		}
+		if(row<0||column<0){
+			row=50;
+			column=1;
+
+		}
+		sample.innerHTML=_word[row][column];
+		playAudio("./audio/" + _word[row][2] + ".wav");
+
+		context.clearRect(0,0,canvasWidth,canvasHeight);
+		drawGrid();
+	}
+)
+
+$(".font_btn").click(
+	function(e){
+		$(".font_btn").removeClass("font_btn_selected");
+		$(this).addClass("font_btn_selected");
+	}
 );
 
 function beginStroke(point){

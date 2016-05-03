@@ -34,7 +34,7 @@
 	clear: both;
 }
 
-.color_btn{
+.font_btn{
 	float: left;
 	margin: 10px 10px 0 0;
 	border: 5px solid white;
@@ -42,33 +42,31 @@
 	height: 40px;
 	border-radius: 5px 5px;
 	cursor: pointer;
+	font-size:38px;
+	color:#fff;
 }
 
-.color_btn:hover{
+.font_btn:hover{
 	border: 5px solid violet;
 }
-.color_btn_selected{
+.font_btn_selected{
 	border: 5px solid blueviolet;
 }
-#black_btn{
+#a_btn{
 	background: black;
 }
-#blue_btn{
+#sa_btn{
 	background: blue;
 }
-#green_btn{
+#na_btn{
 	background: green;
 }
-#red_btn{
+#ma_btn{
 	background: red;
 }
-#orange_btn{
+#ra_btn{
 	background: orange;
 }
-#yellow_btn{
-	background: yellow;
-}
-
 footer{
 	text-align: center;
 	height: 30px;
