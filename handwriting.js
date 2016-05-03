@@ -60,6 +60,31 @@ $("#clear_btn").click(
 		drawGrid();
 	}
 )
+
+$("#prev_btn").click(
+	function(e){
+		//alert("row====="+row+"column===="+column);
+
+		if(column==0){
+			column=1;
+			row--;
+		}
+		else{
+			column=0;
+		}
+		if(row<0||column<0){
+			row=50;
+			column=1;
+
+		}
+		sample.innerHTML=_word[row][column];
+		playAudio("./audio/" + _word[row][2] + ".wav");
+
+		context.clearRect(0,0,canvasWidth,canvasHeight);
+		drawGrid();
+	}
+)
+
 $("#next_btn").click(
 	function(e){
 		//alert("row====="+row+"column===="+column);
@@ -140,31 +165,6 @@ $("#ra_btn").click(
 	}
 )
 
-
-
-$("#prev_btn").click(
-	function(e){
-		alert("row====="+row+"column===="+column);
-
-		if(column==0){
-			column=1;
-			row--;
-		}
-		else{
-			column--;
-		}
-		if(row<0||column<0){
-			row=50;
-			column=1;
-
-		}
-		sample.innerHTML=_word[row][column];
-		playAudio("./audio/" + _word[row][2] + ".wav");
-
-		context.clearRect(0,0,canvasWidth,canvasHeight);
-		drawGrid();
-	}
-)
 
 $(".font_btn").click(
 	function(e){
